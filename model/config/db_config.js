@@ -4,6 +4,7 @@ require('events').EventEmitter.prototype._maxListeners = 0;
 
 var db = mongoose.connection;
 
+
 module.exports = function() {
     var perfil = 'versodb';
 
@@ -23,4 +24,28 @@ module.exports = function() {
     });
 
     return db;
+
+    var userSchema = new mongoose.Schema({
+        email: {
+            type: String,
+            required: [true,  "Usuário deve ter e-mail !"]
+          },
+        date: {
+            type: String,
+            required: [true,  "Usuário deve ter data !"]
+          },
+        password: {
+            type: String,
+            required: [true,  "Usuário deve ter senha !"]
+          },
+        name: {
+            type: String,
+            required: [true,  "Usuário deve ter nome !"]
+          },
+    }, 
+    { collection: 'usercollection' });
+
+   
+ 
+module.exports = { Mongoose: mongoose, UserSchema: userSchema }
 };
